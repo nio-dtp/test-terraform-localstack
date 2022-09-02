@@ -5,6 +5,7 @@ Is it possible to test locally aws lambda ?
 ## Tested solution
 - emulate aws services with localstack
 - deploy aws infrastructure with terraform
+- based on terraform lambda [tutorial](https://learn.hashicorp.com/tutorials/terraform/lambda-api-gateway)
 
 ## Boot
 ```bash
