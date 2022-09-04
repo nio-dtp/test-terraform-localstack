@@ -39,7 +39,7 @@ resource "random_pet" "lambda_bucket_name" {
 }
 
 resource "aws_s3_bucket" "lambda_bucket" {
-  bucket = "test-bucket"
+  bucket = random_pet.lambda_bucket_name.id
 
 #  acl = "private"
 }
@@ -62,9 +62,9 @@ resource "aws_s3_object" "lambda_hello_world" {
 }
 
 resource "aws_lambda_function" "hello_world" {
-  function_name = "HelloWorld"
+  function_name = "hello"
 
-  s3_bucket = aws_s3_bucket.lambda_bucket.bucket
+  s3_bucket = aws_s3_bucket.lambda_bucket.id
 #  s3_bucket = aws_s3_bucket.lambda_bucket.id
   s3_key    = aws_s3_object.lambda_hello_world.key
 
@@ -156,7 +156,7 @@ resource "aws_api_gateway_deployment" "apideploy" {
   ]
 
   rest_api_id = aws_api_gateway_rest_api.lambda.id
-  stage_name  = "test"
+  stage_name  = "poc"
 }
 
 

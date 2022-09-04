@@ -1,19 +1,13 @@
 # Output value definitions
 
-output "lambda_bucket_name" {
-  description = "Name of the S3 bucket used to store function code."
+output "lambda_invoke_url_base" {
+  description = "Url invoking lambda"
 
-  value = aws_s3_bucket.lambda_bucket.id
+  value = format("http://localhost:4566/restapis/%s/poc/_user_request_/hello",aws_api_gateway_rest_api.lambda.id)
 }
 
-output "function_name" {
-  description = "Name of the Lambda function."
+output "lambda_invoke_url_with_parameter" {
+  description = "Url invoking lambda"
 
-  value = aws_lambda_function.hello_world.function_name
-}
-
-output "base_url" {
-  description = "Base URL for API Gateway stage."
-
-  value = aws_api_gateway_deployment.apideploy.invoke_url
+  value = format("http://localhost:4566/restapis/%s/poc/_user_request_/hello?name=Fulll",aws_api_gateway_rest_api.lambda.id)
 }
